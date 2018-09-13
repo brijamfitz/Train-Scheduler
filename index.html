@@ -18,13 +18,25 @@
     <!--JQuery library -->
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+
+    <!-- Firebase database -->
+    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+
+    <!-- Moment JS -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 </head>
+
+<style>
+    body {
+        padding: 40px;
+    }
+</style>
 
 <body>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="jumbotron">
+                <div class="jumbotron" style="background:royalblue;color:white;text-align:center">
                     <h1 class="display-4">Train Scheduler</h1>
                     <p class="lead">Any time is train time.</p>
                     <hr class="my-4">
@@ -33,51 +45,68 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3" id="name">
-                <p>Train Name</p>
-            </div>
-            <div class="col-md-3" id="dest">
-                <p>Destination</p>
-            </div>
-            <div class="col-md-2" id="freq">
-                <p>Frequency (min)</p>
-            </div>
-            <div class="col-md-2" id="arrival">
-                <p>Next Arrival</p>
-            </div>
-            <div class="col-md-2" id="mins">
-                <p>Minutes Away</p>
+            <div class="col-md-12">
+                <br>
+                <div class="card">
+                    <div class="card-header" style="background:gray;color:white">
+                        <strong>
+                            <i class="fa fa-table"></i>Current Train Schedule</strong>
+                    </div>
+                    <div class="row" style="padding:20px">
+                        <div class="col-md-3" id="train-name">
+                            <p><strong>Train Name</strong></p>
+                        </div>
+                        <div class="col-md-3" id="train-destination">
+                            <p><strong>Destination</strong></p>
+                        </div>
+                        <div class="col-md-2" id="train-frequency">
+                            <p><strong>Frequency (min)</strong></p>
+                        </div>
+                        <div class="col-md-2" id="train-arrival">
+                            <p><strong>Next Arrival</strong></p>
+                        </div>
+                        <div class="col-md-2" id="train-minutes-away">
+                            <p><strong>Minutes Away</strong></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <form>
-                    <div class="form-group">
-                        <label for="train-input-name">Train Name</label>
-                        <input type="text" class="form-control" id="train-name">
+                <br>
+                <div class="card">
+                    <div class="card-header" style="background:gray;color:white">
+                        <strong><i class="fa fa-list-alt"></i>Add Train</strong>
                     </div>
-                    <div class="form-group">
-                        <label for="train-input-destination">Destination</label>
-                        <input type="text" class="form-control" id="destination">
+                    <div class="card-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="name">Train Name</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="role">Destination</label>
+                                <input type="text" class="form-control" id="destination">
+                            </div>
+                            <div class="form-group">
+                                <label for="start-date">First Train Time (HH:mm - military time)</label>
+                                <input type="text" class="form-control" id="first-train">
+                            </div>
+                            <div class="form-group">
+                                <label for="monthly-rate">Frequency (min)</label>
+                                <input type="text" class="form-control" id="frequency">
+                            </div>
+                            <button type="submit" class="btn btn-default" style="background:royalblue;color:white;" id="submit-button">
+                                <i class="fa fa-search"></i> Submit</button>
+                        </form>
                     </div>
-                    <div class="form-group">
-                        <label for="train-input-time">First Train Time (HH:mm - military time)</label>
-                        <input type="text" class="form-control" id="train-time">
-                    </div>
-                    <div class="form-group">
-                        <label for="train-input-frequency">Frequency (min)</label>
-                        <input type="text" class="form-control" id="frequency">
-                    </div>
-                    <div class="submit-button">
-                        <button type="submit" class="btn btn-primary mb-2">Submit</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Firebase database -->
-    <script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+
     <!-- Javascript file -->
     <script src="assets/javascript/logic.js"></script>
 
