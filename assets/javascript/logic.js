@@ -51,33 +51,65 @@ database.ref().on('child_added', function(childsnapshot) {
   var frequency = (childsnapshot.val().frequency);
   var firstTrain = (childsnapshot.val().firstTrain)
 
-  // How to find `nextArrival`
+  // How to find `nextArrival` and `minutesAway`
   // Get current time
   var currentTime = moment();
-  console.log('Current time: ' + moment(currentTime).format('hh:mm'))
+  console.log('Current time: ' + moment(currentTime).format('hh:mm A'))
+  // Convert `currentTime` to unix time
+  var unixTime = moment().format('X');
+  console.log('Current unix time: ' + unixTime);
+
+  // Convert `firstTrain` to unix time
+  // var firstTrainUnix = Math.round(moment(firstTrain, 'HH:mm').format('X'));
+  // console.log('First train unix time: ' + firstTrainUnix);
+
+  // var difference = Math.round(unixTime - firstTrainUnix);
+  // console.log(difference);
+
+  // var diffMins = Math.round(difference / 60);
+  // console.log(diffMins);
+
+  // var remainder = Math.round(diffMins % frequency);
+  // console.log(remainder);
+
+  // var minsTillTrain = Math.round(frequency - remainder);
+  // console.log(minsTillTrain);
+
+  // var arriveNext = moment().add(minsTillTrain, 'minutes');
+  // console.log(arriveNext);
+
+  // var trainNext = moment(arriveNext).format('hh:mm A');
+  // console.log(trainNext);
+
   // Convert `firstTrain` 
   var firstTrainConverted = moment(firstTrain, 'HH:mm').subtract(1, 'years');
   console.log(firstTrainConverted);
+
   // Calculate difference in minutes between `firstTrain` and the `currentTime`
   var diffTime = moment().diff(moment(firstTrainConverted), 'minutes');
   console.log('Difference in time: ' + diffTime);
+
   // Divide that number by the `frequency`
   var remainderTime = diffTime % frequency;
   console.log(remainderTime);
+
   // Subtract this number from `frequency`
   // This will give you your `minutesAway` number
   var minutesTillTrain = frequency - remainderTime;
   console.log('Minutes till next train: ' + minutesTillTrain);
+  
   // Add that number to the current time to find the `nextArrival`
   var nextArrival = moment().add(minutesTillTrain, 'minutes');
-  var nextTrain = moment(nextArrival).format('hh:mm');
+  var nextTrain = moment(nextArrival).format('hh:mm A');
 
   // Update the HTML with our stored data
-  $('#train-name').append('<p>' + name + '</p>');
-  $('#train-destination').append('<p>' + destination + '</p>');
-  $('#train-frequency').append('<p>' + frequency + '</p>');
-  $('#train-arrival').append('<p>' + nextTrain + '</p>')
-  $('#train-minutes-away').append('<p>' + minutesTillTrain + '</p>')
+  var newRow = $('<tr>');
+  newRow.append('<td style="padding-left:20px">' + name + '</td>');
+  newRow.append('<td style="padding-left:20px">' + destination + '</td>');
+  newRow.append('<td style="padding-left:20px">' + frequency + '</td>');
+  newRow.append('<td style="padding-left:20px">' + nextTrain + '</td>');
+  newRow.append('<td style="padding-left:20px">' + minutesTillTrain + '</td>');
+  $('tbody').append(newRow);
 },
 // Create Error Handling
 function (errorObject) {
