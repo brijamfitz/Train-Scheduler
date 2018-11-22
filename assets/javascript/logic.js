@@ -59,29 +59,6 @@ database.ref().on('child_added', function(childsnapshot) {
   var unixTime = moment().format('X');
   console.log('Current unix time: ' + unixTime);
 
-  // UNIX TIME METHOD ==========
-  // Convert `firstTrain` to unix time
-  // var firstTrainUnix = Math.round(moment(firstTrain, 'HH:mm').format('X'));
-  // console.log('First train unix time: ' + firstTrainUnix);
-
-  // var difference = Math.round(unixTime - firstTrainUnix);
-  // console.log(difference);
-
-  // var diffMins = Math.round(difference / 60);
-  // console.log(diffMins);
-
-  // var remainder = Math.round(diffMins % frequency);
-  // console.log(remainder);
-
-  // var minsTillTrain = Math.round(frequency - remainder);
-  // console.log(minsTillTrain);
-
-  // var arriveNext = moment().add(minsTillTrain, 'minutes');
-  // console.log(arriveNext);
-
-  // var trainNext = moment(arriveNext).format('hh:mm A');
-  // console.log(trainNext);
-
   // NON-UNIX TIME METHOD ==========
   // Convert `firstTrain` 
   var firstTrainConverted = moment(firstTrain, 'HH:mm').subtract(1, 'years');
