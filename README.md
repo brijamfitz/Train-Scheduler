@@ -2,6 +2,8 @@
 
 Experience here: [Train Scheduler](https://brijamfitz.github.io/Train-Scheduler/)
 
+![image](assets/images/screenshot-train.png)
+
 This application allows a user to create their very own train schedule.
 
 There are inputs for the following values:
@@ -26,4 +28,4 @@ Designed, built, and maintained by Brian Fitzgerald
 
 Email: brianjfitzgerald@gmail.com
 
-&#169; 2018
+Copyright &#169; 2018
